@@ -28,6 +28,7 @@ let rps = {
     let randomPlay = playOptions[Math.floor(Math.random() * playOptions.length)];
     console.log("\nYou: " + userPlay);
     console.log("Computer: " + randomPlay + "\n");
+
     switch (userPlay) {
       case "r":
         if (randomPlay === "r") {
@@ -75,11 +76,11 @@ let rps = {
     console.log("Your Score: " + this.userScore);
     console.log("Computer Score: " + this.cpuScore);
     if (this.cpuScore == 3) {
-      console.log("You lose!");
+      console.log("\nYou lose!");
       process.exit();
     }
     if (this.userScore == 3) {
-      console.log("You lose!!");
+      console.log("\nYou win!!");
       process.exit();
     }
   }
