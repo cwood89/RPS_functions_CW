@@ -1,0 +1,10 @@
+.hover {
+  transition: .3s;
+}
+.hover:hover {
+  transform: scale(1.2);
+}
+#play {
+  padding-top: 150px;
+  padding-bottom: 150px;
+}

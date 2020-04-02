@@ -5,9 +5,9 @@ const readline = require('readline');
 let rps = {
   play: function () {
     console.log("Rock, Paper, Scissors!!\nFirst to three wins!!");
-    this.getUserinput();
+    this.getUserInput();
   },
-  getUserinput: function () {
+  getUserInput: function () {
     readline.emitKeypressEvents(process.stdin);
     process.stdin.setRawMode(true); // alows only one key to be pressed
 
