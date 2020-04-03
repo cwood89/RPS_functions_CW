@@ -1,88 +1,62 @@
 
-const readline = require('readline');
-
-
 let rps = {
-  play: function () {
-    console.log("Rock, Paper, Scissors!!\nFirst to three wins!!");
-    this.getUserInput();
-  },
-  getUserInput: function () {
-    readline.emitKeypressEvents(process.stdin);
-    process.stdin.setRawMode(true); // alows only one key to be pressed
-
-    console.log("Choose a letter( r=Rock, p=Paper, s=Scissors ): \nPress 'e' to exit: ");
-    process.stdin.on('keypress', (key, data) => {
-      if (data.name === "e") {
-        process.exit();
-      }
-      if (data.name === "r" || data.name === "p" || data.name === "s") {
-        this.compare(data.name);
-      } else {
-        console.log("Please enter correct key.")
-      }
-    });
-  },
-  compare: function (userPlay) {
+  play: function (userPlay) {
     let playOptions = ["r", "p", "s"];
     let randomPlay = playOptions[Math.floor(Math.random() * playOptions.length)];
-    console.log("\nYou: " + userPlay);
-    console.log("Computer: " + randomPlay + "\n");
-
+    
     switch (userPlay) {
       case "r":
         if (randomPlay === "r") {
-          console.log("Tie, play again.")
+          this.displayScore("Rock", "Rock", "Tie!")
         } else if (randomPlay === "s") {
           this.userScore++;
-          console.log("You win!")
+          this.displayScore("Rock", "Scissors", "Win!")
         } else if (randomPlay === "p") {
           this.cpuScore++;
-          console.log("You lose!")
+          this.displayScore("Rock", "Paper", "Loss!")
         }
-        this.checkScore();
         break;
       
       case "p":
         if (randomPlay === "p") {
-          console.log("Tie, play again.")
+          this.displayScore("Paper", "Paper", "Tie!")
         } else if (randomPlay === "r") {
           this.userScore++;
-          console.log("You win!")
+          this.displayScore("Paper", "Rock", "Win!")
         } else if (randomPlay === "s") {
           this.cpuScore++;
-          console.log("You lose!")
+          this.displayScore("Paper", "Scissors", "Loss!")
         }
-        this.checkScore();
         break;
         
       case "s":
         if (randomPlay === "s") {
-          console.log("Tie, play again.")
+          this.displayScore("Scissors", "Scissors", "Tie!")
         } else if (randomPlay === "p") {
           this.userScore++;
-          console.log("You win!")
+          this.displayScore("Scissors", "Paper", "Win!")
         } else if (randomPlay === "r") {
           this.cpuScore++;
-          console.log("You lose!")
+          this.displayScore("Scissors", "Rock", "Loss!")
         }
-        this.checkScore();
         break;
       }
   },
   userScore: 0,
   cpuScore: 0,
-  checkScore: function () {
-    console.log("Your Score: " + this.userScore);
-    console.log("Computer Score: " + this.cpuScore);
-    if (this.cpuScore == 3) {
-      console.log("\nYou lose!");
-      process.exit();
-    }
-    if (this.userScore == 3) {
-      console.log("\nYou win!!");
-      process.exit();
-    }
+  displayScore: function (user, cpu, res) {
+    let userScore = document.getElementById("userScore");
+    let userChoice = document.getElementById("userChoice");
+    userScore.innerHTML = "<strong>Score:</strong>  " + this.userScore;
+    userChoice.innerHTML = "<strong>Choice:</strong>  " + user;
+
+    let cpuScore = document.getElementById("cpuScore");
+    let cpuChoice = document.getElementById("cpuChoice");
+    cpuScore.innerHTML = "<strong>Score:</strong>  " + this.cpuScore;
+    cpuChoice.innerHTML = "<strong>Choice:</strong>  " + cpu;
+
+    let result = document.getElementById("result");
+    result.innerHTML = res;
+
   }
 }
-rps.play();
