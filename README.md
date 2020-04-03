@@ -4,4 +4,4 @@ Play Rock Paper Scissors in your browser!
 
 ## How to play
 
-Go to "url" and click on what hand you want to play, it's that simple.
+Go [here](https://cwood89.github.io/RPS_functions_CW/) and click on what hand you want to play, it's that simple.
